@@ -23,7 +23,7 @@ jobs:
     - name: Set env variables
       run: |
         chmod +x .github/workflows/utils.sh
-        source .github/workflows/utils.h
+        source .github/workflows/utils.sh
         VERSION_LOC=openpnm/__version__.py
         echo "TAG=$(get_most_recent_tag)" >> $GITHUB_ENV
         echo "VERSION=$(get_version $VERSION_LOC)" >> $GITHUB_ENV
