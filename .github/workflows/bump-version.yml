@@ -25,7 +25,7 @@ jobs:
       run: |
         chmod +x .github/workflows/utils.sh
         echo "VERSION_LOC=openpnm/__version__.py" >> $GITHUB_ENV
-        echo github.event.head_commit.message
+        echo ${{ github.event.head_commit.message }}
 
     - name: Install dependencies
       run: |
@@ -70,8 +70,8 @@ jobs:
 
         # commit the version bump back to the dev branch as well
         git checkout dev
-        git checkout release -- setup.cfg openpnm/__version__.py
-        git add setup.cfg openpnm/__version__.py
+        git checkout release -- setup.cfg $VERSION_LOC
+        git add setup.cfg $VERSION_LOC
         # the first statement in the next line is to catch commit nothing error
         git diff-index --quiet HEAD || git commit -m "Bump version number [ci skip]"
         git push "${remote_repo}" dev
